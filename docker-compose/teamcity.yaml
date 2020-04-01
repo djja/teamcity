@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  tcserver:
+    image: jetbrains/teamcity-server
+    restart: always
+    # volumes:
+    #   - ./data:/data/teamcity_server/datadir
+    #   - ./logs:/opt/teamcity/logs
+    ports:
+      - 8111:8111
+  tcagent1:
+    image: jetbrains/teamcity-agent
+    restart: always
+    # volumes:
+    #   - ./agentconf:/data/teamcity_agent/conf
+    privileged: true
+    environment:
+      SERVER_URL: http://tcserver:8111
+      DOCKER_IN_DOCKER: start
+      AGENT_NAME: Agent 1
+  tcagent2:
+    image: jetbrains/teamcity-agent
+    restart: always
+    # volumes:
+    #   - ./agentconf:/data/teamcity_agent/conf
+    privileged: true
+    environment:
+      SERVER_URL: http://tcserver:8111
+      DOCKER_IN_DOCKER: start
+      AGENT_NAME: Agent 2
