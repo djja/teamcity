@@ -4,9 +4,9 @@ services:
   tcserver:
     image: jetbrains/teamcity-server
     restart: always
-    # volumes:
-    #   - ./data:/data/teamcity_server/datadir
-    #   - ./logs:/opt/teamcity/logs
+    volumes:
+      - ./data:/data/teamcity_server/datadir
+      - ./logs:/opt/teamcity/logs
     ports:
       - 8111:8111
   tcagent1:
