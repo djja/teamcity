@@ -29,3 +29,13 @@ services:
       SERVER_URL: http://tcserver:8111
       DOCKER_IN_DOCKER: start
       AGENT_NAME: Agent 2
+  tckubeagent1:
+    image: djja/teamcity-kubectl-agent
+    restart: always
+    # volumes:
+    #   - ./agentconf:/data/teamcity_agent/conf
+    privileged: true
+    environment:
+      SERVER_URL: http://tcserver:8111
+      DOCKER_IN_DOCKER: start
+      AGENT_NAME: Kubectl agent 1
